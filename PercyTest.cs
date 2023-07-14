@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using PercyIO.Selenium;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium;
+using PercyIO.Selenium;
 
-namespace Percy
+namespace PercyOnAutomate
 {
     [TestFixture]
     [Category("sample-percy-test")]
@@ -17,9 +17,11 @@ namespace Percy
     string BROWSERSTACK_URL = "https://hub-cloud.browserstack.com/wd/hub";
     protected RemoteWebDriver driver;
 
-     protected WebDriverWait wait;
+    protected WebDriverWait wait;
 
     public PercyTest() : base() { }
+
+    
 
     [SetUp]
     public void Init()
@@ -50,14 +52,14 @@ namespace Percy
         [Test]
         public void SearchBstackDemo()
         {
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
 
             driver.Manage().Window.Size = new System.Drawing.Size(1280, 1024);
             driver.Navigate().GoToUrl("https://bstackdemo.com/");
-            wait.Until(ExpectedConditions.TitleContains("StackDemo"));
+            wait.Until(d => d.Title.Contains("StackDemo"));
 
             // click on the apple products
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='__next']/div/div/main/div[1]/div[1]/label/span"))).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='__next']/div/div/main/div[1]/div[1]/label/span"))).Click();
             
             // [percy note: important step]
             // Percy Screenshot 1
@@ -66,15 +68,16 @@ namespace Percy
 
             // Get text of current product
             string productOnPageText = driver.FindElement(By.XPath("//*[@id=\"1\"]/p")).Text;
-            
+
             // clicking on 'Add to cart' button
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\"1\"]/div[4]"))).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\"1\"]/div[4]"))).Click();
+           
 
             //Check if the Cart pane is visible
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class=\"float-cart__content\"]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[@class=\"float-cart__content\"]")));
             
             string productOnCartText = driver.FindElement(By.XPath("//*[@id=\"__next\"]/div/div/div[2]/div[2]/div[2]/div/div[3]/p[1]")).Text;
-            
+
             // [percy note: important step]
             // Percy Screenshot 2
             // take percy_screenshot using the following command
@@ -83,6 +86,8 @@ namespace Percy
             Assert.AreEqual(productOnCartText, productOnPageText);
 
         }
+
+       
 
         [TearDown]
         public void Cleanup()
