@@ -30,7 +30,7 @@ namespace PercyOnAutomate
         browserstackOptions.Add("browserName","Chrome");
         browserstackOptions.Add("browserVersion", "latest");
         browserstackOptions.Add("os","Windows");
-        browserstackOptions.Add("os_version","11");
+        browserstackOptions.Add("osVersion","11");
         browserstackOptions.Add("projectName","My Project");
         browserstackOptions.Add("buildName","test percy_screenshot");
         browserstackOptions.Add("sessionName","BStack second_test");
