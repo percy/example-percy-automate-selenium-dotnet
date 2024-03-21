@@ -27,13 +27,13 @@ namespace PercyOnAutomate
 
         System.Collections.Generic.Dictionary<string, object> browserstackOptions =
         new Dictionary<string, object>();
-        browserstackOptions.Add("browserName","Chrome");
+        browserstackOptions.Add("browserName","Firefox");
         browserstackOptions.Add("browserVersion", "latest");
         browserstackOptions.Add("os","Windows");
         browserstackOptions.Add("osVersion","11");
-        browserstackOptions.Add("projectName","My Project");
-        browserstackOptions.Add("buildName","test percy_screenshot");
-        browserstackOptions.Add("sessionName","BStack second_test");
+        browserstackOptions.Add("projectName","Percy");
+        browserstackOptions.Add("buildName","Selenium-SDKs");
+        browserstackOptions.Add("sessionName","win11-dotnet-sel");
         browserstackOptions.Add("local","false");
         browserstackOptions.Add("seleniumVersion","3.14.0");
         browserstackOptions.Add("userName",USERNAME);
