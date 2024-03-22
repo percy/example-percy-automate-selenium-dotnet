@@ -30,7 +30,7 @@ namespace PercyOnAutomate
         browserstackOptions.Add("browserName","Firefox");
         browserstackOptions.Add("browserVersion", "latest");
         browserstackOptions.Add("os","Windows");
-        browserstackOptions.Add("osVersion","11");
+        browserstackOptions.Add("osVersion","10");
         browserstackOptions.Add("projectName","Percy");
         browserstackOptions.Add("buildName","Selenium-SDKs");
         browserstackOptions.Add("sessionName","win11-dotnet-sel");
