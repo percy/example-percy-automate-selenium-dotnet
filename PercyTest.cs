@@ -59,7 +59,7 @@ namespace PercyOnAutomate
             wait.Until(d => d.Title.Contains("StackDemo"));
 
             // click on the apple products
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='__next']/div/div/main/div[1]/div[1]/label/span"))).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[normalize-space()=\"Apple\"]"))).Click();
             
             // [percy note: important step]
             // Percy Screenshot 1
@@ -67,16 +67,16 @@ namespace PercyOnAutomate
             Percy.Screenshot(driver, "screenshot_1");
 
             // Get text of current product
-            string productOnPageText = driver.FindElement(By.XPath("//*[@id=\"1\"]/p")).Text;
+            string productOnPageText = driver.FindElement(By.XPath("(//p[@class=\"shelf-item__title\"])[3]")).Text;
 
             // clicking on 'Add to cart' button
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\"1\"]/div[4]"))).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("(//div[@class=\"shelf-item__buy-btn\"])[3]"))).Click();
            
 
             //Check if the Cart pane is visible
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[@class=\"float-cart__content\"]")));
             
-            string productOnCartText = driver.FindElement(By.XPath("//*[@id=\"__next\"]/div/div/div[2]/div[2]/div[2]/div/div[3]/p[1]")).Text;
+            string productOnCartText = driver.FindElement(By.XPath("(//p[@class=\"title\"])[1]")).Text;
 
             // [percy note: important step]
             // Percy Screenshot 2
