@@ -1,0 +1,12 @@
+{
+  "name": "example-percy-automate-selenium-dotnet",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@percy/cli": "1.31.2",
+    "@percy/webdriver-utils": "1.31.2"
+  },
+  "scripts": {
+    "install-percy": "npm install"
+  }
+}
