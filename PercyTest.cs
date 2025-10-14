@@ -64,7 +64,7 @@ namespace PercyOnAutomate
             // [percy note: important step]
             // Percy Screenshot 1
             // take percy_screenshot using the following command
-            Percy.Screenshot(driver, "automate_test_screenshot_1");
+            Percy.Screenshot(driver, "screenshot_1");
 
             // Get text of current product
             string productOnPageText = driver.FindElement(By.XPath("//*[@id=\"1\"]/p")).Text;
@@ -81,7 +81,7 @@ namespace PercyOnAutomate
             // [percy note: important step]
             // Percy Screenshot 2
             // take percy_screenshot using the following command
-            Percy.Screenshot(driver, "automate_test_screenshot_2");
+            Percy.Screenshot(driver, "screenshot_2");
             
             Assert.That(productOnCartText, Is.EqualTo(productOnPageText));
 
@@ -99,3 +99,4 @@ namespace PercyOnAutomate
 
     
 }
+
