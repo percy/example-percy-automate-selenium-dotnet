@@ -15,9 +15,9 @@ namespace PercyOnAutomate
     string USERNAME = Environment.GetEnvironmentVariable("BROWSERSTACK_USERNAME");
     string ACCESS_KEY = Environment.GetEnvironmentVariable("BROWSERSTACK_ACCESS_KEY");
     string BROWSERSTACK_URL = "https://hub-cloud.browserstack.com/wd/hub";
-    protected RemoteWebDriver driver;
+  protected RemoteWebDriver? driver;
 
-    protected WebDriverWait wait;
+  protected WebDriverWait? wait;
 
     public PercyTest() : base() { }
 
@@ -52,7 +52,7 @@ namespace PercyOnAutomate
         [Test]
         public void SearchBstackDemo()
         {
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            wait = new WebDriverWait(driver!, TimeSpan.FromSeconds(20));
 
             driver.Manage().Window.Size = new System.Drawing.Size(1280, 1024);
             driver.Navigate().GoToUrl("https://bstackdemo.com/");
@@ -83,7 +83,7 @@ namespace PercyOnAutomate
             // take percy_screenshot using the following command
             Percy.Screenshot(driver, "screenshot_2");
             
-            Assert.AreEqual(productOnCartText, productOnPageText);
+            Assert.That(productOnCartText, Is.EqualTo(productOnPageText));
 
         }
 
@@ -92,9 +92,11 @@ namespace PercyOnAutomate
         [TearDown]
         public void Cleanup()
         {
-          driver.Quit();
+          driver?.Quit();
+          driver?.Dispose();
         }
     }
 
     
 }
+
