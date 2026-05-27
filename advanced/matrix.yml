@@ -41,6 +41,7 @@ rows:
 
   - id: build_metadata_via_env
     state: covered
+    # projectName/buildName caps are fed via BROWSERSTACK_PROJECT_NAME / BROWSERSTACK_BUILD_NAME env vars.
   - id: env_percy_branch
     state: covered
   - id: env_percy_commit

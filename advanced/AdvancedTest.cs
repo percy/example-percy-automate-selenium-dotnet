@@ -22,8 +22,8 @@ public class AdvancedTests
             { "browserVersion", "latest" },
             { "os", "Windows" },
             { "os_version", "11" },
-            { "projectName", Environment.GetEnvironmentVariable("PERCY_PROJECT") ?? "Percy Automate Selenium-.NET Advanced" },
-            { "buildName", Environment.GetEnvironmentVariable("PERCY_BUILD") ?? "Advanced Selenium .NET" },
+            { "projectName", Environment.GetEnvironmentVariable("BROWSERSTACK_PROJECT_NAME") ?? "Percy Automate Selenium-.NET Advanced" },
+            { "buildName", Environment.GetEnvironmentVariable("BROWSERSTACK_BUILD_NAME") ?? "Advanced Selenium .NET" },
             { "sessionName", "advanced_visual_test" },
             { "userName", Environment.GetEnvironmentVariable("BROWSERSTACK_USERNAME") ?? "" },
             { "accessKey", Environment.GetEnvironmentVariable("BROWSERSTACK_ACCESS_KEY") ?? "" },
@@ -106,10 +106,13 @@ public class AdvancedTests
     [Test]
     public void ExercisesSyncMode()
     {
-        Percy.Screenshot(_driver!, "BStackDemo — sync", new Dictionary<string, object>
+        // sync blocks until Percy returns the comparison result for this snapshot.
+        var result = Percy.Screenshot(_driver!, "BStackDemo — sync", new Dictionary<string, object>
         {
             { "sync", true },
         });
+        Console.WriteLine($"Sync comparison result: {result}");
+        Assert.That(result, Is.Not.Null);
     }
 
     [Test]
