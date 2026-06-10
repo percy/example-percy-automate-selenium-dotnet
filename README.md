@@ -2,6 +2,15 @@
 
 Example repo used by the Percy on Automate demonstrating Percy on Automate integration with .NET.
 
+> **New:** This repo ships an [`advanced/`](./advanced) example covering the full applicable Percy on Automate feature surface. See the [Percy SDK Feature Matrix](https://docs.percy.io/docs/sdk-feature-matrix) for cross-SDK coverage.
+
+## Examples
+
+| Example | What it shows | Run command |
+|---|---|---|
+| `PercyTest.cs` (basic) | Minimum viable: `Percy.Screenshot(driver, name)` calls. | `dotnet test` |
+| [`advanced/`](./advanced) | Full applicable Percy on Automate feature surface: ignore/consider regions, freeze_animation, percy_css, sync mode, test_case + labels. NUnit + Dictionary<string,object>. See [`advanced/README.md`](./advanced/README.md). | `cd advanced && make test` |
+
 ## .NET on Automate Selenium Tutorial
 
 The tutorial assumes you're already familiar with .NET and Selenium and focuses on using it with Percy. You'll still be able to follow along if you're not familiar with .NET, Selenium, but we won't spend time introducing .NET, Selenium concepts.
