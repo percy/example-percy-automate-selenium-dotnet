@@ -19,6 +19,10 @@ namespace PercyOnAutomate
 
   protected WebDriverWait? wait;
 
+    // SeleniumExtras.WaitHelpers 1.0.2 is compiled against the pre-4.44 "WebDriver" assembly and no longer compiles on Selenium 4.44+.
+    private static Func<IWebDriver, IWebElement?> ElementIsVisible(By locator) =>
+        d => { var e = d.FindElement(locator); return e.Displayed ? e : null; };
+
     public PercyTest() : base() { }
 
     
@@ -59,7 +63,7 @@ namespace PercyOnAutomate
             wait.Until(d => d.Title.Contains("StackDemo"));
 
             // click on the apple products
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='__next']/div/div/main/div[1]/div[1]/label/span"))).Click();
+            wait.Until(ElementIsVisible(By.XPath("//*[@id='__next']/div/div/main/div[1]/div[1]/label/span"))).Click();
             
             // [percy note: important step]
             // Percy Screenshot 1
@@ -70,11 +74,11 @@ namespace PercyOnAutomate
             string productOnPageText = driver.FindElement(By.XPath("//*[@id=\"1\"]/p")).Text;
 
             // clicking on 'Add to cart' button
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\"1\"]/div[4]"))).Click();
+            wait.Until(ElementIsVisible(By.XPath("//*[@id=\"1\"]/div[4]"))).Click();
            
 
             //Check if the Cart pane is visible
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[@class=\"float-cart__content\"]")));
+            wait.Until(ElementIsVisible(By.XPath("//*[@class=\"float-cart__content\"]")));
             
             string productOnCartText = driver.FindElement(By.XPath("//*[@id=\"__next\"]/div/div/div[2]/div[2]/div[2]/div/div[3]/p[1]")).Text;
 

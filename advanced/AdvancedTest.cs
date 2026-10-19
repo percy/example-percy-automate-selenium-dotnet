@@ -37,7 +37,11 @@ public class AdvancedTests
     }
 
     [OneTimeTearDown]
-    public void TearDown() => _driver?.Quit();
+    public void TearDown()
+    {
+        _driver?.Quit();
+        _driver?.Dispose();
+    }
 
     [Test]
     public void ExercisesBaseline()
