@@ -110,6 +110,25 @@ $ npx percy exec --verbose  -- dotnet test --filter "Category=sample-percy-after
 
 On completion of this script, this build would get compared to the previous build and hence we can see the visual changes which percy detected.
 
+### Responsive snapshots on Edge with `webSocketUrl: true`
+
+`PercyResponsiveEdgeTest.cs` takes a responsive DOM snapshot at 375px and 1280px on Edge. It starts the session with the WebDriver BiDi capability:
+
+```csharp
+var options = new EdgeOptions { BrowserVersion = "latest", UseWebSocketUrl = true };
+// in bstack:options
+{ "seleniumBidi", true },
+{ "seleniumVersion", "4.33.0" },
+```
+
+On Automate, BiDi also needs `seleniumBidi` and a Selenium server of 4.20 or later in `bstack:options`. With a BiDi session, `PercyIO.Selenium` can set the exact viewport for each width; a browser window can't be narrower than about 500px, so without it a 375px capture renders wider. SDK versions without BiDi support ignore the capability and snapshot as before.
+
+`Percy.Snapshot()` needs a Percy **web** project token (not the Automate project token used above):
+
+``` shell
+$ npx percy exec --verbose  -- dotnet test --filter "Category=sample-percy-responsive-edge"
+```
+
 ### Finished! 😀
 
 From here, you can try making your own changes to the website and functional tests, if you like. If you do, re-run
